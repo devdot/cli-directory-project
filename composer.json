@@ -1,0 +1,35 @@
+{
+    "name": "devdot/cli-directory-project",
+    "description": "Addon for making directory projects, suitable for devdot/cli.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Devdot\\Cli\\DirectoryProject\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Thomas Kuschan",
+            "email": "mail@thomaskuschan.de"
+        }
+    ],
+     "require": {
+        "php": "^8.2",
+        "devdot/cli": "^1",
+        "symfony/filesystem": "^7"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.11",
+        "squizlabs/php_codesniffer": "^3.10",
+        "phpunit/phpunit": "^11.3"
+    },
+    "scripts": {
+        "check-static": "phpstan analyse src --level=9",
+        "format": "phpcbf --standard=PSR12 src tests",
+        "test": "phpunit tests"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
