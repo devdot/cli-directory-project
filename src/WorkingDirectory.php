@@ -24,12 +24,12 @@ class WorkingDirectory implements WorkingDirectoryInterface, Stringable
         return new self(getcwd() ?: '');
     }
 
-    public function getWorkingDirectory(): string
+    public function get(): string
     {
         return $this->path;
     }
 
-    public function isInWorkingDirectory(string $absolute): bool
+    public function isSubPath(string $absolute): bool
     {
         return Path::isBasePath($this->path, $absolute);
     }
@@ -37,20 +37,20 @@ class WorkingDirectory implements WorkingDirectoryInterface, Stringable
     /**
      * Make a given absolute path relative to the the base directory
      */
-    public function getRelativeToWorkingDirectory(string $path): string
+    public function makeRelative(string $absolute): string
     {
-        return Path::makeRelative($path, $this->path);
+        return Path::makeRelative($absolute, $this->path);
     }
 
     /**
      * Make a given relative path absolute using base directory
      */
-    public function getAbsoluteInWorkingDirectory(string $path): string
+    public function makeAbsolute(string $relative): string
     {
-        return Path::makeAbsolute($path, $this->path);
+        return Path::makeAbsolute($relative, $this->path);
     }
 
-    public function formatInWorkingDirectory(string $path, string $prefix = '.' . DIRECTORY_SEPARATOR): string
+    public function formatPath(string $path, string $prefix = '.' . DIRECTORY_SEPARATOR): string
     {
         $relative = Path::makeRelative($path, $this->path);
         return $prefix . $relative;

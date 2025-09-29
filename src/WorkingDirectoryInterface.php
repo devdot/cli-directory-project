@@ -2,11 +2,13 @@
 
 namespace Devdot\Cli\DirectoryProject;
 
-interface WorkingDirectoryInterface
+use Stringable;
+
+interface WorkingDirectoryInterface extends Stringable
 {
-    public function getWorkingDirectory(): string;
-    public function isInWorkingDirectory(string $absolute): bool;
-    public function getRelativeToWorkingDirectory(string $path): string;
-    public function getAbsoluteInWorkingDirectory(string $path): string;
-    public function formatInWorkingDirectory(string $path, string $prefix): string;
+    public function get(): string;
+    public function isSubPath(string $absolute): bool;
+    public function makeRelative(string $absolute): string;
+    public function makeAbsolute(string $relative): string;
+    public function formatPath(string $path, string $prefix): string;
 }
